@@ -4,26 +4,26 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                bat 'mvn clean package'
             }
         }
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t tg/todo-app:1.0 .'
+                bat 'docker build -t tg/todo-app:1.0 .'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
 
         stage('Push') {
             steps {
-                sh 'docker tag tg/todo-app:1.0 tg/todo-app:1.0'
-                // sh 'docker push tg/todo-app:1.0'
+                bat 'docker tag tg/todo-app:1.0 tg/todo-app:1.0'
+                bat 'docker push tg/todo-app:1.0'
             }
         }
     }
